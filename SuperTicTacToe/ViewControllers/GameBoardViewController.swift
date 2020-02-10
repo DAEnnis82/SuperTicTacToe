@@ -30,6 +30,7 @@ class GameBoardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //TO DO: refactor UI code into custom buttons and labels
         playerTurnLabel.backgroundColor = UIColor.red;
         playerTurnLabel.textColor = UIColor.orange;
         playerTurnLabel.text = "Player 1 Turn";
@@ -89,7 +90,6 @@ class GameBoardViewController: UIViewController {
         position9.layer.borderWidth = 1.0;
         position9.layer.cornerRadius = 10.0;
 
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func buttonPressed(_ sender: UIButton){
@@ -120,7 +120,7 @@ class GameBoardViewController: UIViewController {
         //if victory code comes back as not zero, segue to victory screen vc
         //otherwise, update which players turn it is.
         if (code != 0) {
-            performSegue(withIdentifier: "VictoryScreenSegue", sender: nil)
+            performSegue(withIdentifier: "StandardVictoryScreenSegue", sender: nil)
         } else {
         game.setPlayerTurn();
         }
@@ -144,9 +144,10 @@ class GameBoardViewController: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "VictoryScreenSegue" {
+        if segue.identifier == "StandardVictoryScreenSegue" {
             let vc = segue.destination as? VictoryScreenViewController
-            vc?.victoryCode = code;
+            vc?.victoryCode = code
+            vc?.gameMode = 0
         }
        
     }

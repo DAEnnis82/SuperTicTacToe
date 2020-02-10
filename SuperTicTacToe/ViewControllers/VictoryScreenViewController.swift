@@ -14,7 +14,27 @@ class VictoryScreenViewController: UIViewController {
     @IBOutlet weak var playAgainButton: UIButton!
     @IBOutlet weak var mainMenuButton: UIButton!
     
-    var victoryCode = 0;
+    @IBAction func MainMenuButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "VictoryToMainMenuSegue", sender: nil)
+    }
+    
+    @IBAction func PlayAgainButtonTapped(_ sender: Any) {
+        switch gameMode {
+        case 0:
+            performSegue(withIdentifier: "VictoryToStandardGameSegue", sender: nil)
+            break
+        case 1:
+            performSegue(withIdentifier: "VictoryToSuperGameSegue", sender: nil)
+            break
+        default:
+            break
+        }
+    }
+    
+    var victoryCode = 0
+    var gameMode : Int?
+    var player1 : Int?
+    var player2 : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +46,12 @@ class VictoryScreenViewController: UIViewController {
         //sets what the label will display based on the winner
         switch victoryCode {
         case 1:
-            victoryTextLabel.text = "VICTORY, Player 1!";
+            victoryTextLabel.text = "VICTORY, \(PlayerTable.shared.getPlayer(position: player1!).getPlayerName())!";
             victoryTextLabel.backgroundColor = UIColor.red;
             victoryTextLabel.textColor = UIColor.orange;
             break;
         case 2:
-            victoryTextLabel.text = "VICTORY, Player 2!";
+            victoryTextLabel.text = "VICTORY, \(PlayerTable.shared.getPlayer(position: player2!).getPlayerName())";
             victoryTextLabel.backgroundColor = UIColor.blue;
             victoryTextLabel.textColor = UIColor.cyan;
             break;
@@ -44,18 +64,27 @@ class VictoryScreenViewController: UIViewController {
             break;
         }
         
+        
+        
+        
+        
+        
+        
     }
     
     
 
-    /*
+  
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "VictoryToSuperGameSegue" {
+            let vc = segue.destination as? SuperGameBoardViewController
+            vc?.player1 = player1
+            vc?.player2 = player2
+        }
     }
-    */
+   
 
 }

@@ -14,6 +14,21 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var SuperStartButton: UIButton!
     @IBOutlet weak var PlayerProfilesButton: UIButton!
     
+    var modeSelected : Int?
+    
+    @IBAction func StandardGameButtonTapped(_ sender: Any) {
+        modeSelected = 0
+        performSegue(withIdentifier: "MainMenuToPlayerSelectSegue", sender: nil)
+    }
+    
+    @IBAction func SuperGameButtonTapped(_ sender: Any) {
+        modeSelected = 1
+         performSegue(withIdentifier: "MainMenuToPlayerSelectSegue", sender: nil)
+    }
+    
+    @IBAction func PlayerProfileButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "MainMenuToProfilesSegue", sender: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +40,15 @@ class MainMenuViewController: UIViewController {
     }
     
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "MainMenuToPlayerSelectSegue" {
+            let vc = segue.destination as? PlayerSelectViewController
+            vc?.mode = modeSelected ?? 0
+        }
     }
-    */
-
+    
 }
