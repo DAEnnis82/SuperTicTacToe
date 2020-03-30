@@ -9,7 +9,7 @@
 import UIKit
 
 class VictoryScreenViewController: UIViewController {
-
+    
     @IBOutlet weak var victoryTextLabel: UILabel!
     @IBOutlet weak var playAgainButton: UIButton!
     @IBOutlet weak var mainMenuButton: UIButton!
@@ -43,29 +43,50 @@ class VictoryScreenViewController: UIViewController {
         playAgainButton.layer.cornerRadius = 10.0;
         mainMenuButton.layer.cornerRadius = 10.0;
         
+        
+        
         //sets what the label will display based on the winner
         switch victoryCode {
         case 1:
-            victoryTextLabel.text = "VICTORY, \(PlayerTable.shared.getPlayer(position: player1!).getPlayerName())!";
-            victoryTextLabel.backgroundColor = UIColor.red;
-            victoryTextLabel.textColor = UIColor.orange;
-            break;
+            victoryTextLabel.text = "VICTORY, \(PlayerTable.shared.getPlayer(position: player1!).getPlayerName())!"
+            victoryTextLabel.backgroundColor = UIColor.red
+            victoryTextLabel.textColor = UIColor.orange
+            updateStats(winner: player1!, loser: player2!)
+            break
+            
         case 2:
-            victoryTextLabel.text = "VICTORY, \(PlayerTable.shared.getPlayer(position: player2!).getPlayerName())";
-            victoryTextLabel.backgroundColor = UIColor.blue;
-            victoryTextLabel.textColor = UIColor.cyan;
-            break;
+            victoryTextLabel.text = "VICTORY, \(PlayerTable.shared.getPlayer(position: player2!).getPlayerName())"
+            victoryTextLabel.backgroundColor = UIColor.blue
+            victoryTextLabel.textColor = UIColor.cyan
+            updateStats(winner: player2!, loser: player1!)
+            break
+            
         case 3:
-            victoryTextLabel.text = "STALEMATE";
-            victoryTextLabel.backgroundColor = UIColor.darkGray;
-            victoryTextLabel.textColor = UIColor.green;
-            break;
+            victoryTextLabel.text = "STALEMATE"
+            victoryTextLabel.backgroundColor = UIColor.darkGray
+            victoryTextLabel.textColor = UIColor.green
+            break
+            
         default:
-            break;
+            
+            break
         }
         
-        
-        
+    }
+    
+    func updateStats(winner: Int, loser: Int) {
+        switch gameMode {
+        case 0:
+            PlayerTable.shared.getPlayer(position: winner).playerWonStnd()
+            PlayerTable.shared.getPlayer(position: loser).playerLostStnd()
+            break
+        case 1:
+            PlayerTable.shared.getPlayer(position: winner).playerWonSpr()
+            PlayerTable.shared.getPlayer(position: loser).playerLostSpr()
+            break
+        default:
+            break
+        }
         
         
         
@@ -73,10 +94,10 @@ class VictoryScreenViewController: UIViewController {
     }
     
     
-
-  
+    
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "VictoryToSuperGameSegue" {
@@ -85,6 +106,6 @@ class VictoryScreenViewController: UIViewController {
             vc?.player2 = player2
         }
     }
-   
-
+    
+    
 }

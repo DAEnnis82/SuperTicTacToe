@@ -30,19 +30,19 @@ class ProfileDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        playerProfileImage.image = player?.getPlayerImage() ?? UIImage(named: "PlayerImagePlaceholder")
         playerNameLabel.text = player?.getPlayerName()
         powerNameLabel.text = powerIndex.superPowers[player?.displayPower() ?? 0].1
         powerDescriptionLabel.text = powerIndex.superPowers[player?.displayPower() ?? 0].2
         
-        standardWinsLabel.text = String(describing: player?.getStndWinsLoses().0)
-        standardLosesLabel.text = String(describing: player?.getStndWinsLoses().1)
+        standardWinsLabel.text =  "\(player?.getStndWinsLoses().0 ?? 0)"
+        standardLosesLabel.text = "\(player?.getStndWinsLoses().1 ?? 0)"
         
-        superWinsLabel.text = String(describing: player?.getSprWinsLoses().0)
-        superLosesLabel.text = String(describing: player?.getSprWinsLoses().1)
+        superWinsLabel.text = "\(player?.getSprWinsLoses().0 ?? 0)"
+        superLosesLabel.text = "\(player?.getSprWinsLoses().1 ?? 0)"
         
-        totalWinsLabel.text = String(describing: player?.getAllWinsLoses().0)
-        totalLosesLabel.text = String(describing: player?.getAllWinsLoses().1)
+        totalWinsLabel.text = "\(player?.getAllWinsLoses().0 ?? 0)"
+        totalLosesLabel.text = "\(player?.getAllWinsLoses().1 ?? 0)"
     }
     
 

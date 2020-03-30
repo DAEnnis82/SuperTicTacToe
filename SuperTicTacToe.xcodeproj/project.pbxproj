@@ -18,11 +18,14 @@
 		6396CAC623CAC6EE009DDFAD /* AddPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6396CAC523CAC6EE009DDFAD /* AddPlayerViewController.swift */; };
 		6396CAC823CCC7DF009DDFAD /* PlayerProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6396CAC723CCC7DF009DDFAD /* PlayerProfileCell.swift */; };
 		6396CACA23CCC984009DDFAD /* SectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6396CAC923CCC984009DDFAD /* SectionHeaderCell.swift */; };
-		63CA670A23E1474500784EBF /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA670923E1474500784EBF /* CollectionViewController.swift */; };
+		63DE6E5C242A96960090C3A4 /* SavedPlayer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DE6E5A242A96960090C3A4 /* SavedPlayer+CoreDataClass.swift */; };
+		63F32790242BFC7F00B902D8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3278F242BFC7F00B902D8 /* CoreDataManager.swift */; };
+		63F32794242E450600B902D8 /* SavedPlayer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F32793242E450600B902D8 /* SavedPlayer+CoreDataProperties.swift */; };
+		960896832408090F0080B48B /* GameLogicRework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960896822408090F0080B48B /* GameLogicRework.swift */; };
 		9659253C23AD6FE80055175D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9659253B23AD6FE80055175D /* AppDelegate.swift */; };
 		9659253E23AD6FE80055175D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9659253D23AD6FE80055175D /* SceneDelegate.swift */; };
 		9659254323AD6FE80055175D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9659254123AD6FE80055175D /* Main.storyboard */; };
-		9659254623AD6FE80055175D /* SuperTicTacToe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9659254423AD6FE80055175D /* SuperTicTacToe.xcdatamodeld */; };
+		9659254623AD6FE80055175D /* SuperTicTacToe.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 9659254423AD6FE80055175D /* SuperTicTacToe.xcdatamodeld */; };
 		9659254823AD6FE90055175D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9659254723AD6FE90055175D /* Assets.xcassets */; };
 		9659254B23AD6FE90055175D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9659254923AD6FE90055175D /* LaunchScreen.storyboard */; };
 		9659255623AD6FE90055175D /* SuperTicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9659255523AD6FE90055175D /* SuperTicTacToeTests.swift */; };
@@ -62,7 +65,10 @@
 		6396CAC523CAC6EE009DDFAD /* AddPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayerViewController.swift; sourceTree = "<group>"; };
 		6396CAC723CCC7DF009DDFAD /* PlayerProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfileCell.swift; sourceTree = "<group>"; };
 		6396CAC923CCC984009DDFAD /* SectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderCell.swift; sourceTree = "<group>"; };
-		63CA670923E1474500784EBF /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		63DE6E5A242A96960090C3A4 /* SavedPlayer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedPlayer+CoreDataClass.swift"; sourceTree = "<group>"; };
+		63F3278F242BFC7F00B902D8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		63F32793242E450600B902D8 /* SavedPlayer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedPlayer+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		960896822408090F0080B48B /* GameLogicRework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogicRework.swift; sourceTree = "<group>"; };
 		9659253823AD6FE80055175D /* SuperTicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperTicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9659253B23AD6FE80055175D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9659253D23AD6FE80055175D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +117,8 @@
 		630DEC7B23C17879005384FD /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				63DE6E5A242A96960090C3A4 /* SavedPlayer+CoreDataClass.swift */,
+				63F32793242E450600B902D8 /* SavedPlayer+CoreDataProperties.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -136,10 +144,12 @@
 		6396CAC223C80723009DDFAD /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				960896822408090F0080B48B /* GameLogicRework.swift */,
 				9659257423B145B90055175D /* GameLogic.swift */,
 				6311038823CF449F00369C93 /* SuperPowersList.swift */,
 				6396CAC023C7617C009DDFAD /* Player.swift */,
 				6396CAC323C8ABB6009DDFAD /* PlayerTable.swift */,
+				63F3278F242BFC7F00B902D8 /* CoreDataManager.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -147,7 +157,6 @@
 		9659252F23AD6FE80055175D = {
 			isa = PBXGroup;
 			children = (
-				63CA670923E1474500784EBF /* CollectionViewController.swift */,
 				9659253A23AD6FE80055175D /* SuperTicTacToe */,
 				9659255423AD6FE90055175D /* SuperTicTacToeTests */,
 				9659255F23AD6FE90055175D /* SuperTicTacToeUITests */,
@@ -173,11 +182,11 @@
 				9659254123AD6FE80055175D /* Main.storyboard */,
 				630DEC7E23C60E73005384FD /* ViewControllers */,
 				6396CAC223C80723009DDFAD /* Classes */,
+				630DEC7B23C17879005384FD /* Data */,
 				9659254723AD6FE90055175D /* Assets.xcassets */,
 				9659254923AD6FE90055175D /* LaunchScreen.storyboard */,
 				9659254C23AD6FE90055175D /* Info.plist */,
 				9659254423AD6FE80055175D /* SuperTicTacToe.xcdatamodeld */,
-				630DEC7B23C17879005384FD /* Data */,
 			);
 			path = SuperTicTacToe;
 			sourceTree = "<group>";
@@ -307,6 +316,7 @@
 				9659254B23AD6FE90055175D /* LaunchScreen.storyboard in Resources */,
 				9659254823AD6FE90055175D /* Assets.xcassets in Resources */,
 				9659254323AD6FE80055175D /* Main.storyboard in Resources */,
+				9659254623AD6FE80055175D /* SuperTicTacToe.xcdatamodeld in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,14 +351,16 @@
 				6311038923CF449F00369C93 /* SuperPowersList.swift in Sources */,
 				9659253C23AD6FE80055175D /* AppDelegate.swift in Sources */,
 				6311038D23D35F2100369C93 /* PlayerSelectViewController.swift in Sources */,
-				9659254623AD6FE80055175D /* SuperTicTacToe.xcdatamodeld in Sources */,
 				6396CAC123C7617C009DDFAD /* Player.swift in Sources */,
-				63CA670A23E1474500784EBF /* CollectionViewController.swift in Sources */,
+				63F32790242BFC7F00B902D8 /* CoreDataManager.swift in Sources */,
 				9659257323AD70610055175D /* VictoryScreenViewController.swift in Sources */,
+				63DE6E5C242A96960090C3A4 /* SavedPlayer+CoreDataClass.swift in Sources */,
 				630DEC7A23C0C77E005384FD /* SuperGameBoardViewController.swift in Sources */,
 				9659253E23AD6FE80055175D /* SceneDelegate.swift in Sources */,
 				6311038B23D1F1F300369C93 /* ProfileDetailViewController.swift in Sources */,
 				6396CAC823CCC7DF009DDFAD /* PlayerProfileCell.swift in Sources */,
+				63F32794242E450600B902D8 /* SavedPlayer+CoreDataProperties.swift in Sources */,
+				960896832408090F0080B48B /* GameLogicRework.swift in Sources */,
 				9659257123AD704F0055175D /* GameBoardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

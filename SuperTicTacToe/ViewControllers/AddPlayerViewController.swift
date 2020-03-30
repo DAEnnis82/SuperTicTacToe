@@ -28,6 +28,9 @@ class AddPlayerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         guard playerPower != nil else {
             return
         }
+        if PlayerTable.shared.playerExists(name: playerName) {
+            return
+        }
         PlayerTable.shared.addPlayer(name: PlayerNameTextField.text!, sPower: playerPower!)
         
         navigationController?.popViewController(animated: true)

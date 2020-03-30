@@ -13,6 +13,7 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var StandardStartButton: UIButton!
     @IBOutlet weak var SuperStartButton: UIButton!
     @IBOutlet weak var PlayerProfilesButton: UIButton!
+    let backgroundImage = UIImage(named: "SuperTTTSplashBackground")
     
     var modeSelected : Int?
     
@@ -32,6 +33,8 @@ class MainMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let background = UIColor(patternImage: backgroundImage!)
+        self.view.backgroundColor = background
         
         //button styling
         StandardStartButton.layer.cornerRadius = 10.0;

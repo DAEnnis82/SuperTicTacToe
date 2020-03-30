@@ -69,9 +69,8 @@ class PlayerSelectViewController: UIViewController, UICollectionViewDelegate, UI
             }
         playerBeingSelected += 1
         selectPlayerLabelController()
-        if let indexPath = playerProfileCollectionView?.indexPathsForVisibleItems {
-            playerProfileCollectionView?.reloadItems(at: indexPath)
-        }
+        //playerProfileCollectionView?.reloadData()
+        playerProfileCollectionView?.reloadItems(at: playerProfileCollectionView!.indexPathsForVisibleItems)
     
     }
     
@@ -84,7 +83,18 @@ class PlayerSelectViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("in the collection view method")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PlayerProfileCell", for: indexPath) as! PlayerProfileCollectionViewCell
+        if (player1 != nil && indexPath.item == player1) {
+            cell.hasBeenSelected = true
+            print("cell \(indexPath.item) selected as player1")
+        } else if (player2 != nil && indexPath.item == player2) {
+            cell.hasBeenSelected = true
+            print("cell \(indexPath.item) selected as player2")
+        } else {
+            cell.hasBeenSelected = false
+            print("cell \(indexPath.item) unselected")
+        }
         cell.playerBeingSelected = playerBeingSelected
         cell.player = PlayerTable.shared.getPlayer(position: indexPath.item)
         cell.indexTag = indexPath.item
@@ -104,6 +114,12 @@ class PlayerSelectViewController: UIViewController, UICollectionViewDelegate, UI
         // Get the new view controller using segue.destination.
         if segue.identifier == "SuperGameStartSegue" {
             if let vc = segue.destination as? SuperGameBoardViewController {
+                vc.player1 = player1 ?? 0
+                vc.player2 = player2 ?? 1
+            }
+        }
+        if segue.identifier == "StandardGameStartSegue" {
+            if let vc = segue.destination as? GameBoardViewController {
                 vc.player1 = player1 ?? 0
                 vc.player2 = player2 ?? 1
             }

@@ -13,10 +13,11 @@ class PlayerProfileCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var playerNameLabel: UILabel!
     
-    var player : Player?
+    //var player : Player?
     
     func populatePlayer(playerData: Player) {
         playerNameLabel.text = playerData.getPlayerName()
+        profileImage.image = playerData.getPlayerImage() ?? UIImage(named: "PlayerImagePlaceholder")
     }
     
     override func awakeFromNib() {

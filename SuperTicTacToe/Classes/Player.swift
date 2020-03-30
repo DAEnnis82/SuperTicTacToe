@@ -6,14 +6,13 @@
 //  Copyright © 2020 Apps By Ennis. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class Player {
     
     private var name : String
     private var power: Int
-    private var playerImage = UIImage(named: "PlayerImagePlaceholder")
+    private var playerImage: UIImage? //= UIImage(named: "PlayerImagePlaceholder")
     private var stndWins = 0
     private var sprWins = 0
     private var stndLoses = 0
@@ -25,39 +24,74 @@ class Player {
         self.power = pPower
     }
     
+    init(pName: String, pPower: Int, stndWins: Int, stndLoses: Int, sprWins: Int, sprLoses: Int) {
+        
+        self.name = pName
+        self.power = pPower
+        self.stndWins = stndWins
+        self.stndLoses = stndLoses
+        self.sprWins = sprWins
+        self.sprLoses = sprLoses
+        
+    }
+    
+    init(pName: String, pPower: Int, stndWins: Int, stndLoses: Int, sprWins: Int, sprLoses: Int, playerImage: UIImage?) {
+        
+        self.name = pName
+        self.power = pPower
+        self.stndWins = stndWins
+        self.stndLoses = stndLoses
+        self.sprWins = sprWins
+        self.sprLoses = sprLoses
+        self.playerImage = playerImage
+        
+    }
+    
     func playerWonStnd() {
         stndWins += 1
+        CoreDataManager.shared.updateSavedPlayerData(player: self)
     }
     
     func playerLostStnd() {
         stndLoses += 1
+        CoreDataManager.shared.updateSavedPlayerData(player: self)
     }
     
     func playerWonSpr() {
         sprWins += 1
+        CoreDataManager.shared.updateSavedPlayerData(player: self)
     }
     
     func playerLostSpr() {
         sprLoses += 1
+        CoreDataManager.shared.updateSavedPlayerData(player: self)
     }
     
     //called when a player chooses to edit thier profile and updates their name
     func updateName(newName: String) {
         name = newName
+        CoreDataManager.shared.updateSavedPlayerData(player: self)
     }
     
     //called when a player chooses to edit thier profile and updates their super power
     func updatePower(newPower: Int) {
         power = newPower
+        CoreDataManager.shared.updateSavedPlayerData(player: self)
+        
     }
     
     //returns the players name
     func getPlayerName() -> String {
         return name
+        
     }
     
-    func getPlayerImage() -> UIImage {
-        return playerImage!
+    func getPlayerImage() -> UIImage? {
+        if playerImage != nil {
+            return playerImage
+        } else {
+            return nil
+        }
     }
     
     //returns standard mode wins and loses
