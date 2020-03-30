@@ -6,12 +6,10 @@ This is a personal development project/porfolio project I am currently working o
 Please keep in mind while looking at the project that it is still a work in progress.
 
 Currently on the to-do list as I have time:
-1) Data persistence for Player profiles/stats (most likely using Core-Data)
-2) rewrite the core game logic for super mode to address some bugs that have come up in testing
-3) Update the UI with custom buttons/backgrounds
-4) music and sound effects
-5) add in camera support for player profiles.
-6) hook up stats tracking for player profiles
+
+1) music and sound effects
+2) add in camera support for player profiles.
+3) wire up the search field in the player select screen so that a person can search for a specific profile
 
 
 Synopsis:
