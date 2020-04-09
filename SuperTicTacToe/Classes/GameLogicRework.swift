@@ -137,6 +137,7 @@ class EnhancedGame: BasicGame {
         print("p2 power:" + "\(p2PowerUsed)")
         super.updateBoard(position: position)
         rewindTracker[self.getPlayerTurn() - 1] = position
+        dump(rewindTracker)
         dump(freezeTracker)
         if (freezeTracker[0].turn != 99) {
             print("in freezeTracker update")
@@ -169,16 +170,16 @@ class EnhancedGame: BasicGame {
     
     func prepareForPlayerPowerSwap() -> [Int] {
         print("prepareForPlayerPowerSwap called")
-        var disablePositions = [Int]()
+        var positionsToEnable = [Int]()
         let player = getPlayerTurn()
         for (index, value) in gameboard.enumerated() {
             if (value == player) {
-                disablePositions.append(index)
+                positionsToEnable.append(index)
             }
         }
-        print("returned positions to disable: ")
-        dump(disablePositions)
-        return disablePositions
+        print("returned positions to enable: ")
+        dump(positionsToEnable)
+        return positionsToEnable
     }
     
     //function that executes the "Swap" super power. The player selects one of their positions that is currently filled and it

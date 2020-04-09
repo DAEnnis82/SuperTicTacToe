@@ -56,7 +56,7 @@ class PlayerProfileCollectionViewCell: UICollectionViewCell {
             profileSelectButton.backgroundColor = UIColor.blue
             profileSelectButton.setTitle("Select Profile as P2", for: .normal)
         } else {
-            profileSelectButton.backgroundColor = UIColor.purple
+            profileSelectButton.backgroundColor = UIColor.white
             profileSelectButton.setTitle("", for: .normal)
             profileSelectButton.isEnabled = false
         }

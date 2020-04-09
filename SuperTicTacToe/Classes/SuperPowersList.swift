@@ -10,6 +10,7 @@ import Foundation
 
 
 //this struct is called by various viewcontrollers and classes that need to display player powers and their descriptions
+
 struct SuperPowersList {
 public let superPowers: [(Int,String,String)] =
     

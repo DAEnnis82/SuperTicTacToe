@@ -48,7 +48,7 @@ class SuperGameBoardViewController: UIViewController {
         playerTurnLabel.backgroundColor = UIColor.red
         playerTurnLabel.textColor = UIColor.orange
         playerTurnLabel.text = """
-        Player 1 Turn
+        \(PlayerTable.shared.getPlayer(position: player1!).getPlayerName()) Turn
         P: \(powerList.superPowers[p1Power!].1)
         """
         
@@ -65,7 +65,8 @@ class SuperGameBoardViewController: UIViewController {
         }
         
         superPowerButton.isEnabled = false
-        
+        superPowerButton.backgroundColor = UIColor.gray
+        superPowerButton.setTitleColor(UIColor.white, for: .normal)
     }
     
     fileprivate func updateUI() {
@@ -104,23 +105,32 @@ class SuperGameBoardViewController: UIViewController {
                 default:
                     break
                 }
+                
+                if superPowerButton.isEnabled == false {
+                    superPowerButton.backgroundColor = UIColor.gray
+                    superPowerButton.setTitleColor(UIColor.white, for: .normal)
+                } else {
+                    superPowerButton.backgroundColor = UIColor.purple
+                    superPowerButton.setTitleColor(UIColor.orange, for: .normal)
+                }
+                
             }
         }
     }
     
     fileprivate func prepForSwap() {
         print("VC method prepForSwap called")
-        for position in 0...9 {
+        for position in 1...9 {
             if let button = self.view.viewWithTag(position) as? UIButton {
-                button.isEnabled = true
-                print("positon \(position) is enabled")
+                button.isEnabled = false
+                print("positon \(position) is \(button.isEnabled)")
             }
         }
-        let positionsToDisable = game.prepareForPlayerPowerSwap()
-        for position in positionsToDisable {
-            if let button = self.view.viewWithTag(position) as? UIButton{
-                button.isEnabled = false
-                print("positon \(position) is disabled")
+        let positionsToEnable = game.prepareForPlayerPowerSwap()
+        for position in positionsToEnable {
+            if let button = self.view.viewWithTag(position + 1) as? UIButton{
+                button.isEnabled = true
+                print("positon \(position) is \(button.isEnabled)")
             }
         }
     }
@@ -158,6 +168,7 @@ class SuperGameBoardViewController: UIViewController {
                 sender.setTitleColor(UIColor.blue, for: .normal)
                 sender.layer.borderColor = UIColor.blue.cgColor
                 sender.setTitle("F", for: .normal)
+                updateUI()
                 break
             case 3:
                 //leaving case 3 in here for now, but this power would not
@@ -168,7 +179,6 @@ class SuperGameBoardViewController: UIViewController {
             }
             
             superModeActive = false
-            superPowerButton.backgroundColor = UIColor.purple
             superPowerButton.isEnabled = false
             
         } else {
@@ -189,7 +199,7 @@ class SuperGameBoardViewController: UIViewController {
                 playerTurnLabel.backgroundColor = UIColor.red
                 playerTurnLabel.textColor = UIColor.orange
                 playerTurnLabel.text = """
-                Player 1 Turn
+                \(PlayerTable.shared.getPlayer(position: player1!).getPlayerName()) Turn
                 P: \(powerList.superPowers[p1Power!].1)
                 """
                 superPowerButton.isEnabled = game.canUsePower(power: p1Power!)
@@ -198,7 +208,7 @@ class SuperGameBoardViewController: UIViewController {
                 playerTurnLabel.backgroundColor = UIColor.blue
                 playerTurnLabel.textColor = UIColor.cyan
                 playerTurnLabel.text = """
-                Player 2 Turn
+                \(PlayerTable.shared.getPlayer(position: player2!).getPlayerName()) Turn
                 P: \(powerList.superPowers[p2Power!].1)
                 """
                 superPowerButton.isEnabled = game.canUsePower(power: p2Power!)
@@ -215,10 +225,13 @@ class SuperGameBoardViewController: UIViewController {
             case 1:
                 prepForSwap()
                 superPowerButton.isEnabled = false
+                superModeActive = true
+                superPowerButton.backgroundColor = UIColor.yellow
                 break
             case 3:
                 game.playerPowerRewind()
                 superPowerButton.isEnabled = false
+                updateUI()
                 break
             default:
                 break
@@ -228,10 +241,13 @@ class SuperGameBoardViewController: UIViewController {
             case 1:
                 prepForSwap()
                 superPowerButton.isEnabled = false
+                superModeActive = true
+                superPowerButton.backgroundColor = UIColor.yellow
                 break
-            case 2:
+            case 3:
                 game.playerPowerRewind()
                 superPowerButton.isEnabled = false
+                updateUI()
                 break
             default:
                 break
@@ -240,7 +256,6 @@ class SuperGameBoardViewController: UIViewController {
             superModeActive = true
             superPowerButton.backgroundColor = UIColor.yellow
         }
-        updateUI()
     }
     
     

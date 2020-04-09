@@ -12,19 +12,21 @@ class Player {
     
     private var name : String
     private var power: Int
-    private var playerImage: UIImage? //= UIImage(named: "PlayerImagePlaceholder")
+    private var accountType: Int //0 for premade guest account, 1 for user made player account
+    private var playerImage: UIImage? 
     private var stndWins = 0
     private var sprWins = 0
     private var stndLoses = 0
     private var sprLoses = 0
     
     
-    init(pName: String, pPower: Int) {
+    init(pName: String, pPower: Int, accountType: Int) {
         self.name = pName
         self.power = pPower
+        self.accountType = accountType
     }
     
-    init(pName: String, pPower: Int, stndWins: Int, stndLoses: Int, sprWins: Int, sprLoses: Int) {
+    init(pName: String, pPower: Int, stndWins: Int, stndLoses: Int, sprWins: Int, sprLoses: Int, accountType: Int) {
         
         self.name = pName
         self.power = pPower
@@ -32,10 +34,10 @@ class Player {
         self.stndLoses = stndLoses
         self.sprWins = sprWins
         self.sprLoses = sprLoses
-        
+        self.accountType = accountType
     }
     
-    init(pName: String, pPower: Int, stndWins: Int, stndLoses: Int, sprWins: Int, sprLoses: Int, playerImage: UIImage?) {
+    init(pName: String, pPower: Int, stndWins: Int, stndLoses: Int, sprWins: Int, sprLoses: Int, accountType: Int, playerImage: UIImage?) {
         
         self.name = pName
         self.power = pPower
@@ -44,7 +46,7 @@ class Player {
         self.sprWins = sprWins
         self.sprLoses = sprLoses
         self.playerImage = playerImage
-        
+        self.accountType = accountType
     }
     
     func playerWonStnd() {
@@ -128,7 +130,13 @@ class Player {
         return power
     }
     
+    func getAccountType() -> Int {
+        return accountType
+    }
     
+    func setAccountType(accountType: Int) {
+        self.accountType = accountType
+    }
     
     
     

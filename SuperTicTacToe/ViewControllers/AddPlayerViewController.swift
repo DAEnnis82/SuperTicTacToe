@@ -32,7 +32,7 @@ class AddPlayerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             return
         }
         PlayerTable.shared.addPlayer(name: PlayerNameTextField.text!, sPower: playerPower!)
-        
+        _ = PlayerTable.shared.sectionedSortedTable()
         navigationController?.popViewController(animated: true)
         //performSegue(withIdentifier: "unwindToPlayerProfileTableViewController", sender: nil)
         

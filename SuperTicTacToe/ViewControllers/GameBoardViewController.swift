@@ -33,7 +33,7 @@ class GameBoardViewController: UIViewController {
         //TO DO: refactor UI code into custom buttons and labels
         playerTurnLabel.backgroundColor = UIColor.red;
         playerTurnLabel.textColor = UIColor.orange;
-        playerTurnLabel.text = "Player 1 Turn";
+        playerTurnLabel.text = "\(PlayerTable.shared.getPlayer(position: player1!).getPlayerName()) Turn";
         
         //additional button styling code
         for position in 1...9 {
@@ -105,11 +105,11 @@ class GameBoardViewController: UIViewController {
         if (game.getPlayerTurn() == 1) {
             playerTurnLabel.backgroundColor = UIColor.red;
             playerTurnLabel.textColor = UIColor.orange;
-            playerTurnLabel.text = "Player 1 Turn";
+            playerTurnLabel.text = "\(PlayerTable.shared.getPlayer(position: player1!).getPlayerName()) Turn";
         } else {
             playerTurnLabel.backgroundColor = UIColor.blue;
             playerTurnLabel.textColor = UIColor.cyan;
-            playerTurnLabel.text = "Player 2 Turn";
+            playerTurnLabel.text = "\(PlayerTable.shared.getPlayer(position: player2!).getPlayerName()) Turn";
         }
         
         

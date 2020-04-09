@@ -19,16 +19,30 @@ class PlayerSelectViewController: UIViewController, UICollectionViewDelegate, UI
     var player1 : Int?
     var player2 : Int?
     var mode : Int?
+    var searchActive = false
+    var searchText : String?
+    var filteredSearchTable : [Player] = []
     let powerIndex = SuperPowersList()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchTextField.delegate = self
+        //searchTextField.addTarget(self, action: #selector(PlayerSelectViewController.textFieldDidChangeSelection(_:)), for: .editingChanged)
         
-        //let player1 = players.getPlayer(position: 0)
-        //let player2 = players.getPlayer(position: 1)
-        // Do any additional setup after loading the view.
         selectPlayerLabelController()
+        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
+        
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+           self.view.endEditing(true)
+            searchTextField.resignFirstResponder()
+       }
     
 
     @IBAction func startGameButtonTapped(_ sender: Any) {
@@ -43,6 +57,8 @@ class PlayerSelectViewController: UIViewController, UICollectionViewDelegate, UI
         
         
     }
+    
+    
     
     func selectPlayerLabelController() {
         if playerBeingSelected == 1 {
@@ -59,6 +75,7 @@ class PlayerSelectViewController: UIViewController, UICollectionViewDelegate, UI
             selectPlayerLabel.backgroundColor = UIColor.green
             selectPlayerLabel.textColor = UIColor.yellow
         }
+        
     }
     
     func didTapSelectProfile(playerSelected: Player, indexTag: Int) {
@@ -69,7 +86,7 @@ class PlayerSelectViewController: UIViewController, UICollectionViewDelegate, UI
             }
         playerBeingSelected += 1
         selectPlayerLabelController()
-        //playerProfileCollectionView?.reloadData()
+        _ = textFieldShouldClear(searchTextField)
         playerProfileCollectionView?.reloadItems(at: playerProfileCollectionView!.indexPathsForVisibleItems)
     
     }
@@ -79,7 +96,14 @@ class PlayerSelectViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PlayerTable.shared.tableSize()
+        if searchActive && filteredSearchTable.count > 0 {
+            print("in collectionView method")
+            print("search Table size \(filteredSearchTable.count)")
+            return filteredSearchTable.count
+        } else {
+             return PlayerTable.shared.tableSize()
+        }
+
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -96,10 +120,18 @@ class PlayerSelectViewController: UIViewController, UICollectionViewDelegate, UI
             print("cell \(indexPath.item) unselected")
         }
         cell.playerBeingSelected = playerBeingSelected
+        if searchActive && filteredSearchTable.count > 0 {
+            print("cells populating with search data")
+            cell.player = filteredSearchTable[indexPath.item]
+            cell.indexTag = PlayerTable.shared.getIndexOfPlayer(filteredSearchTable[indexPath.item].getPlayerName())
+            cell.populateCell(playerData: filteredSearchTable[indexPath.item], power: powerIndex)
+        } else {
         cell.player = PlayerTable.shared.getPlayer(position: indexPath.item)
         cell.indexTag = indexPath.item
         cell.populateCell(playerData: PlayerTable.shared.getPlayer(position: indexPath.item), power: powerIndex)
+        }
         cell.delegate = self
+        
         
         return cell
         
@@ -127,3 +159,41 @@ class PlayerSelectViewController: UIViewController, UICollectionViewDelegate, UI
     }
 
 }
+extension PlayerSelectViewController : UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+     textField.resignFirstResponder()
+        return true
+        
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        searchText = searchTextField.text
+        print("search text updated")
+        filteredSearchTable = PlayerTable.shared.flatSortedTable(searchText!)
+        playerProfileCollectionView.reloadData()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        searchActive = true
+        print("search mode active")
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        searchActive = false
+        playerProfileCollectionView.reloadData()
+        print("search mode ended")
+        return true
+    }
+    
+
+    
+    
+}
+
+

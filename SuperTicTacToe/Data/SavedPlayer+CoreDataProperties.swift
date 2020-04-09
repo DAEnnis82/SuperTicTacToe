@@ -2,7 +2,7 @@
 //  SavedPlayer+CoreDataProperties.swift
 //  SuperTicTacToe
 //
-//  Created by David Ennis on 3/27/20.
+//  Created by David Ennis on 4/2/20.
 //  Copyright © 2020 Apps By Ennis. All rights reserved.
 //
 //
@@ -24,5 +24,6 @@ extension SavedPlayer {
     @NSManaged public var sprWins: Int16
     @NSManaged public var stndLoses: Int16
     @NSManaged public var stndWins: Int16
+    @NSManaged public var accountType: Int16
 
 }

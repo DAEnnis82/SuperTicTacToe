@@ -9,9 +9,9 @@
 import UIKit
 
 class PlayerProfileTableViewController: UITableViewController {
-
-
     
+    private var table = PlayerTable.shared.sectionedSortedTable()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,19 +33,27 @@ class PlayerProfileTableViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return PlayerTable.shared.sectionedSortedTable().count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+      if section == 0 {
+          return "Premade Accounts"
+      } else {
+          return String(table[section][0].getPlayerName().prefix(1).uppercased())
+      }
+    
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return PlayerTable.shared.tableSize()
+        let rows = table[section].count
+        return rows
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerProfileTableCell", for: indexPath) as! PlayerProfileCell
-        cell.populatePlayer(playerData: PlayerTable.shared.getPlayer(position: indexPath.row))
+        cell.populatePlayer(playerData: table[indexPath.section][indexPath.row])
 
         return cell
     }
@@ -55,26 +63,47 @@ class PlayerProfileTableViewController: UITableViewController {
            tableView.deselectRow(at: indexPath, animated: true)
         
        }
-    /*
-      // Override to support conditional editing of the table view.
+    
       override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-          // Return false if you do not want the specified item to be editable.
+        if indexPath.section == 0 {
+            return false
+        } else {
           return true
-      }
-      */
+        }
+    }
 
-      /*
-      // Override to support editing the table view.
-      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-          if editingStyle == .delete {
-              // Delete the row from the data source
-              tableView.deleteRows(at: [indexPath], with: .fade)
-          } else if editingStyle == .insert {
-              // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-          }
+      
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+           
+            let playerToDelete = table[indexPath.section][indexPath.row].getPlayerName()
+            var sectionEmpty: Bool
+            if table[indexPath.section].count == 1 {
+                           sectionEmpty = true
+                       } else {
+                           sectionEmpty = false
+                       }
+            print("sectionEmpty: \(sectionEmpty)")
+            PlayerTable.shared.deletePlayer(name: playerToDelete)
+            self.table = PlayerTable.shared.sectionedSortedTable()
+          
+            tableView.beginUpdates()
+            
+            if !sectionEmpty {
+              
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            } else {
+                
+                tableView.deleteSections([indexPath.section], with: .fade)
+            }
+           
+            tableView.endUpdates()
+       
+        } else if editingStyle == .insert {
+            return// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
       }
-      */
-
+    
       /*
       // Override to support rearranging the table view.
       override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {

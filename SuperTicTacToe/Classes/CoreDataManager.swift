@@ -48,6 +48,7 @@ final class CoreDataManager {
         player.stndLoses = Int16(data.getStndWinsLoses().1)
         player.sprWins = Int16(data.getSprWinsLoses().0)
         player.sprLoses = Int16(data.getSprWinsLoses().1)
+        player.accountType = Int16(data.getAccountType())
         if data.getPlayerImage() != nil {
             player.playerImage = data.getPlayerImage()?.pngData() as Data?
         }
@@ -85,7 +86,7 @@ final class CoreDataManager {
             do {
                 try context.save()
                 print("player data updated in Core Data")
-            } catch {
+            } catch let error as NSError {
                 print("Could not save. \(error), \(error.localizedDescription)")
             }
             
@@ -95,6 +96,27 @@ final class CoreDataManager {
         }
         
         
+    }
+    
+    func deletePlayerFromCoreData(playerToDelete: String) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedPlayer")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", playerToDelete)
+        
+        do {
+            let results = try context.fetch(fetchRequest) as! [SavedPlayer]
+            let returnedPlayer = results[0]
+            context.delete(returnedPlayer)
+            
+            do {
+                try context.save()
+                print("Player succesfully deleted")
+            } catch let error as NSError {
+                print("Delete failed.\(error), \(error.localizedDescription)")
+            }
+            
+        } catch let error as NSError {
+            print("Failed to delete player. \(error), \(error.userInfo)")
+        }
     }
     
     
