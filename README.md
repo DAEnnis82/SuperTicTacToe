@@ -3,12 +3,13 @@ A game of TicTacToe with a twist - personal learning project for iOS
 
 This is a personal development project/porfolio project I am currently working on to develop my Swift capabilities
 
-Please keep in mind while looking at the project that it is still a work in progress.
+Please keep in mind while looking at the project that it is still a work in progress, the app is currently at what I would consider to be a Alpha state (maybe). The User Interface is servicable for what the app is, but was not the focus of the project, so apologize if its not the prettiest app you've ever seen.
 
 Currently on the to-do list as I have time:
 
 1) music and sound effects
-2) add in camera support for player profiles.
+2) add in camera support for player profiles (currently all profiles get a generic placeholder image).
+3) UI overhaul.
 
 
 Synopsis:
@@ -24,7 +25,17 @@ Swap - Player can choose one of their tiles and it will randomly be swapped with
 
 Rewind - When activated Rewind undoes both players last moves, effectively stepping the game back a turn.
 
-The app also has the ability to create player profiles, which will track win/loss stats (in a future build) and allow the player
+![Main Meun](App Screen Shots/Main Menu Screen.png)
+![Player Select Screen](App Screen Shots/PlayerSelectScreen.png)
+![Standard Game Mode](App Screen Shots/StandardModeScreen.png)
+![Super Game Mode](App Screen Shots/SuperModeScreen.png)
+
+The app also has the ability to create player profiles (hit the + button in the top right of the Player Profiles screen to create a new profile), which will track win/loss stats and allow the player
 to select which power they want to use. There are currently 5 generic profiles permanently embedded, one for each of the
 super powers as well as generic Player1/Player2 profiles, which when selected will randomly select one of the powers at the start
 each game.
+
+![Player Profile Table Screen](App Screen Shots/PlayerProfileTableScreen.png)
+![Create New Player Profile Screen](App Screen Shots/CreateNewPlayerScreen.png)
+![Play Profile Detail View](App Screen Shots/ProfileDetailViewScreen.png)
+
