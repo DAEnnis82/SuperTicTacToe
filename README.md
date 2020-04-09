@@ -9,7 +9,6 @@ Currently on the to-do list as I have time:
 
 1) music and sound effects
 2) add in camera support for player profiles.
-3) wire up the search field in the player select screen so that a person can search for a specific profile
 
 
 Synopsis:
