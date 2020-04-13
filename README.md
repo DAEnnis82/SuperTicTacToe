@@ -1,9 +1,9 @@
 # SuperTicTacToe
 A game of TicTacToe with a twist - personal learning project for iOS
 
-This is a personal development project/porfolio project I am currently working on to develop my Swift capabilities
+This is a personal development project/portfolio project I am currently working on to develop my Swift capabilities
 
-Please keep in mind while looking at the project that it is still a work in progress, the app is currently at what I would consider to be a Alpha state (maybe). The User Interface is servicable for what the app is, but was not the focus of the project, so apologize if its not the prettiest app you've ever seen.
+Please keep in mind while looking at the project that it is still a work in progress, the app is currently at what I would consider to be a Alpha state (maybe). The User Interface is serviceable for what the app is, but was not the focus of the project, so apologize if its not the prettiest app you've ever seen.
 
 Currently on the to-do list as I have time:
 
@@ -25,7 +25,7 @@ Swap - Player can choose one of their tiles and it will randomly be swapped with
 
 Rewind - When activated Rewind undoes both players last moves, effectively stepping the game back a turn.
 
-![Main Meun](App%20Screen%20Shots/Main%20Menu%20Screen.png)
+![Main Menu](App%20Screen%20Shots/Main%20Menu%20Screen.png)
 ![Player Select Screen](App%20Screen%20Shots/PlayerSelectScreen.png)
 ![Standard Game Mode](App%20Screen%20Shots/StandardModeScreen.png)
 ![Super Game Mode](App%20Screen%20Shots/SuperModeScreen.png)

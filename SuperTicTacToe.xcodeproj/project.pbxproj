@@ -53,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1AD3AAD62444B15C00C8651C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		630DEC7923C0C77E005384FD /* SuperGameBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperGameBoardViewController.swift; sourceTree = "<group>"; };
 		630DEC7C23C60E49005384FD /* PlayerProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfileTableViewController.swift; sourceTree = "<group>"; };
 		6311038823CF449F00369C93 /* SuperPowersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperPowersList.swift; sourceTree = "<group>"; };
@@ -170,6 +171,7 @@
 		9659252F23AD6FE80055175D = {
 			isa = PBXGroup;
 			children = (
+				1AD3AAD62444B15C00C8651C /* README.md */,
 				9659253A23AD6FE80055175D /* SuperTicTacToe */,
 				9659255423AD6FE90055175D /* SuperTicTacToeTests */,
 				9659255F23AD6FE90055175D /* SuperTicTacToeUITests */,

@@ -1,13 +1,7 @@
-//
-//  GameLogicRework.swift
-//  SuperTicTacToe
-//
-//  Created by Work Mode on 2/27/20.
-//  Copyright © 2020 Apps By Ennis. All rights reserved.
-//
-
 import Foundation
 
+// I think it's great that you are breaking out game logic from a view controller.
+// I would like to see some testing against these non-UI classes.
 class BasicGame {
     
     var gameboard = [Int](repeating: 0, count: 9)
@@ -15,12 +9,12 @@ class BasicGame {
     var turnTracker = 1
     var playerTurn = 1
     
-    
-    
     //when victory function is called it checks the board to determine if there is a winner or a stalemate and then returns an int
     //value to interpreted. returns 1 for player 1 victory, 2 for player 2 victory or 3 for stalemate. if 0 is returned, no one has won
     //and there are still possible moves on the board.
     func victoryCheck() -> Int {
+        // Might consider removing prints for production or adding a Logging system that can distrinquish
+        // debug/warning/error type messages.
         print("victory check function called")
         var code = 0
         var marker = 0

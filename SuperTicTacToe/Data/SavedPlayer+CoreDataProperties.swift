@@ -10,7 +10,6 @@
 import Foundation
 import CoreData
 
-
 extension SavedPlayer {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<SavedPlayer> {

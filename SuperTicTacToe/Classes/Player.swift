@@ -12,6 +12,7 @@ class Player {
     
     private var name : String
     private var power: Int
+    // This comment suggests `accountType` should be an Enum
     private var accountType: Int //0 for premade guest account, 1 for user made player account
     private var playerImage: UIImage? 
     private var stndWins = 0

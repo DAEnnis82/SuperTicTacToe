@@ -9,6 +9,9 @@
 import UIKit
 import CoreData
 
+// I know this is a learning project, and it's cool to use Core Data to help learn it
+// but in production, this app does not need Core Data. For small data values, just use the Codable
+// protocol and write a JSON file to disk.
 final class CoreDataManager {
     
     

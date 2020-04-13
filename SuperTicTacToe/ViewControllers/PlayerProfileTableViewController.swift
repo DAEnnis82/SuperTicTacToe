@@ -11,7 +11,8 @@ import UIKit
 class PlayerProfileTableViewController: UITableViewController {
     
     private var table = PlayerTable.shared.sectionedSortedTable()
-
+    
+    // remove dead code
     override func viewDidLoad() {
         super.viewDidLoad()
 

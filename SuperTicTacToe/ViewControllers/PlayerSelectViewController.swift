@@ -16,9 +16,13 @@ class PlayerSelectViewController: UIViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var startGameButton: UIButton!
     
     var playerBeingSelected = 1
+    // player1 feels like a poor name, is not descriptive of what this really is used for.
+    // Could be solved by a better name or inline documentation.
     var player1 : Int?
     var player2 : Int?
     var mode : Int?
+    
+    // Search active could be an evaluated value based on if `searchText` is nil?
     var searchActive = false
     var searchText : String?
     var filteredSearchTable : [Player] = []
@@ -28,6 +32,10 @@ class PlayerSelectViewController: UIViewController, UICollectionViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTextField.delegate = self
+        
+        // Try not to leave dead code in the repo
+        // If its there for a reason, document the reason and link to a ticket that explains what needs
+        // to happen.
         //searchTextField.addTarget(self, action: #selector(PlayerSelectViewController.textFieldDidChangeSelection(_:)), for: .editingChanged)
         
         selectPlayerLabelController()
@@ -52,24 +60,23 @@ class PlayerSelectViewController: UIViewController, UICollectionViewDelegate, UI
         } else if (mode == 1) {
             performSegue(withIdentifier: "SuperGameStartSegue", sender: nil)
         } else {
+            // Consider using `assertionFailure("Explain failure.")`
+            // assets only fire in DEBUG mode and are stripped out of production
+            // `fatalError()` will crash you app in production which should be avoided.
             fatalError()
         }
-        
-        
     }
-    
-    
     
     func selectPlayerLabelController() {
         if playerBeingSelected == 1 {
             selectPlayerLabel.text = "Select Player 1!"
+            // These colors could be put into a type that gives them more context.
             selectPlayerLabel.backgroundColor = UIColor.red
             selectPlayerLabel.textColor = UIColor.white
         } else if playerBeingSelected == 2 {
             selectPlayerLabel.text = "Select Player 2!"
             selectPlayerLabel.backgroundColor = UIColor.blue
             selectPlayerLabel.textColor = UIColor.white
-
         } else {
             selectPlayerLabel.text = "Prepare to Play!"
             selectPlayerLabel.backgroundColor = UIColor.green
@@ -91,6 +98,7 @@ class PlayerSelectViewController: UIViewController, UICollectionViewDelegate, UI
     
     }
     
+    // Consider groupping any collection view delegates inside a named `extension`
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

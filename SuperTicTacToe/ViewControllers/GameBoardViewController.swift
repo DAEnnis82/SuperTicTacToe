@@ -36,6 +36,8 @@ class GameBoardViewController: UIViewController {
         playerTurnLabel.text = "\(PlayerTable.shared.getPlayer(position: player1!).getPlayerName()) Turn";
         
         //additional button styling code
+        // Could consdier a new type that contains the info on styling a game board to lessen the logic in
+        // this view controller.
         for position in 1...9 {
             if let button = self.view.viewWithTag(position) as? UIButton {
                 button.backgroundColor = UIColor.white
@@ -105,6 +107,8 @@ class GameBoardViewController: UIViewController {
         if (game.getPlayerTurn() == 1) {
             playerTurnLabel.backgroundColor = UIColor.red;
             playerTurnLabel.textColor = UIColor.orange;
+            // I dislike singleton use like this, as they can make testing more difficult.
+            // Might consider changing this to a configurable property of the view controller.
             playerTurnLabel.text = "\(PlayerTable.shared.getPlayer(position: player1!).getPlayerName()) Turn";
         } else {
             playerTurnLabel.backgroundColor = UIColor.blue;

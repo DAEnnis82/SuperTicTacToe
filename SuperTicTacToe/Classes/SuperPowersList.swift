@@ -9,6 +9,9 @@
 import Foundation
 
 
+// Awesome start to some documentation!!
+// for inline docs use /// so they show up in Xcode helper tools.
+// http://mikezornek.com/posts/2019/2/professional-ios-projects-code-documentation/
 //this struct is called by various viewcontrollers and classes that need to display player powers and their descriptions
 
 struct SuperPowersList {
